@@ -1,10 +1,12 @@
 import React from "react";
 import { Divider } from "@mantine/core";
+import { providers, signIn, getSession, csrfToken } from "next-auth/client";
 import AuthImageWithVector from "../components/auth/AuthImageWithVector";
 import InputField from "../components/auth/InputField";
 import Link from "next/link";
 import GoogleAuthButton from "../components/auth/GoogleAuthButton";
-function Signup() {
+function Signup({ providers }) {
+  console.log(providers);
   return (
     <div className="flex flex-col xl:flex-row h-screen  items-center text-center bg-[#084A83]  font-serif">
       <div className="h-full w-full xl:w-1/2 flex-grow  flex flex-col justify-center items-center">
@@ -17,7 +19,11 @@ function Signup() {
             <p className="mt-6 text-gray-500">Get started now !</p>
           </div>
           <div className=" max-w-xs  space-y-4 flex flex-col w-full">
-            <GoogleAuthButton text="Sign up with Google" />
+            <GoogleAuthButton
+              text="Sign up with Google"
+              id={providers.google.id}
+              onClick={() => console.log("Click")}
+            ></GoogleAuthButton>
             <Divider label=" or Sign up with Email " labelPosition="center" />
             <div className="flex flex-col items-start space-y-6 pb-4">
               <InputField label="Name" placeholder="Name" />
@@ -54,5 +60,19 @@ function Signup() {
     </div>
   );
 }
-
+export const getServerSideProps = async (context) => {
+  const { req } = context;
+  const session = await getSession({ req });
+  if (session) {
+    return {
+      redirect: { destination: "/" },
+    };
+  }
+  return {
+    props: {
+      providers: await providers(context),
+      csrfToken: await csrfToken(context),
+    },
+  };
+};
 export default Signup;

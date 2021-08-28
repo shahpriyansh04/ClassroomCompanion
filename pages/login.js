@@ -1,11 +1,13 @@
 import React from "react";
+import { providers, signIn, getSession, csrfToken } from "next-auth/client";
+
 import { Divider } from "@mantine/core";
 import AuthImageWithVector from "../components/auth/AuthImageWithVector";
 import InputField from "../components/auth/InputField";
 import Link from "next/link";
 
 import GoogleAuthButton from "../components/auth/GoogleAuthButton";
-function Signup() {
+function Signup({ providers }) {
   return (
     <div className="flex flex-col xl:flex-row h-screen  items-center text-center bg-[#084A83]  font-serif">
       <div className="h-full w-full xl:w-1/2 flex-grow  flex flex-col justify-center items-center">
@@ -18,13 +20,16 @@ function Signup() {
             <p className="mt-6 text-gray-500">Welcome Back!</p>
           </div>
           <div className=" max-w-xs  space-y-4 flex flex-col w-full">
-            <GoogleAuthButton text="Login with Google" />
+            <GoogleAuthButton
+              text="Sign up with Google"
+              id={providers.google.id}
+              onClick={() => console.log("Click")}
+            ></GoogleAuthButton>{" "}
             <Divider label=" or Login with Email " labelPosition="center" />
             <div className="flex flex-col items-start space-y-6">
               <InputField label="Email" placeholder="Email" />
               <InputField label="Password" placeholder="Password" />
             </div>
-
             <div className="flex text-lg  px-4 py-3 bg-[#084A83] text-[#FFFFE7] border-2 text-center justify-center cursor-pointer rounded-full items-center active:scale-95 transition duration-200 ease-out">
               <p>Login</p>
             </div>
@@ -41,5 +46,19 @@ function Signup() {
     </div>
   );
 }
-
+export const getServerSideProps = async (context) => {
+  const { req } = context;
+  const session = await getSession({ req });
+  if (session) {
+    return {
+      redirect: { destination: "/" },
+    };
+  }
+  return {
+    props: {
+      providers: await providers(context),
+      csrfToken: await csrfToken(context),
+    },
+  };
+};
 export default Signup;
