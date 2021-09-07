@@ -24,6 +24,7 @@ export default function App(props) {
         <MantineProvider
           theme={{
             /** Put your mantine theme override here */
+            fontFamily: "Reem kufi",
             colorScheme: "light",
           }}
         >
