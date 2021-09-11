@@ -7,7 +7,9 @@ function EmptyDashboard() {
 
   return (
     <div className=" flex-grow  flex flex-col justify-center items-center space-y-6">
-      <p className="text-xl">You haven't created any classrooms yet</p>
+      <p className="text-xl text-center">
+        You haven't created any classrooms yet
+      </p>
       <div
         onClick={() => {
           setIsModalOpen(true);
@@ -20,7 +22,7 @@ function EmptyDashboard() {
         <Modal
           opened={isModalOpen}
           transitionDuration={400}
-          //   transition="scale"
+          transition="scale"
           size="md"
           onClose={() => setIsModalOpen(false)}
           // transition="fade"
@@ -34,9 +36,14 @@ function EmptyDashboard() {
                   type="text"
                   placeholder="Name"
                   className="px-3 border-2 w-full py-4 rounded-full focus:shadow-md outline-none transition duration-200 ease-in "
-                ></input>
-                <div className=" px-4 py-3  rounded-full  text-light-text cursor-pointer bg-light-primary  shadow-lg active:scale-95 transition duration-200 ease-out hover:opacity-95">
-                  Create
+                ></input>{" "}
+                <div className="flex justify-around space-x-4">
+                  <div className=" px-4 py-3 flex-grow rounded-full  text-light-text cursor-pointer bg-red-500  shadow-lg active:scale-95 transition duration-200 ease-out hover:opacity-95">
+                    Cancel
+                  </div>
+                  <div className=" px-4 py-3 flex-grow rounded-full  text-light-text cursor-pointer bg-light-primary  shadow-lg active:scale-95 transition duration-200 ease-out hover:opacity-95">
+                    Create
+                  </div>
                 </div>
               </div>
             </div>
