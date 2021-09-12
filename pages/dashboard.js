@@ -25,12 +25,12 @@ function Dashboard() {
 
       <div className="flex-grow flex flex-col justify-center ">
         <Header />
-        <div className="bg-white flex-grow text-black flex px-10 py-10 w-2/3 mx-auto  shadow-lg my-10 rounded-lg ">
-          <div className="flex flex-col flex-grow">
+        <div className="bg-white flex-grow text-black flex sm:px-10 sm:py-10 w-10/12  xl:w-2/3 mx-auto  shadow-lg my-10 rounded-lg ">
+          <div className="flex flex-col flex-grow mt-10 sm:mt-0">
             <p className="text-3xl text-center ">Your Dashboard</p>
             {/* <EmptyDashboard /> */}
-            <div className="container flex h-80 flex-grow mt-6 overflow-scroll scrollbar-hide">
-              <div className="grid grid-cols-3  flex-grow my-10 mx-10 items-center ">
+            <div className="container flex h-80 flex-grow mt-6 overflow-scroll scrollbar-hide mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  flex-grow  mx-6 my-4 items-center ">
                 <ClassroomCard /> <ClassroomCard />
                 <ClassroomCard />
                 <ClassroomCard /> <ClassroomCard />

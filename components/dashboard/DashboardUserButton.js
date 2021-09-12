@@ -16,7 +16,9 @@ function DashboardUserButton() {
       <div className="">
         <Avatar radius="xl" size={32} />
       </div>
-      <p className="text-xl ">{user ? user.email : "John Dode"}</p>
+      <p className="text-xl hidden md:inline ">
+        {user ? user.email : "John Dode"}
+      </p>
 
       <Menu
         size={130}
