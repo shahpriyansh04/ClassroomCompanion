@@ -30,28 +30,27 @@ export default function App(props) {
   }, []);
 
   return (
-    <>
-      {" "}
-      <RecoilRoot>
-        <JssProvider generateId={createGenerateId()}>
-          <SupabaseContextProvider client={supabase}>
-            <Head>
-              <title>Classroom Companion</title>
-              <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <MantineProvider
-              theme={{
-                /** Put your mantine theme override here */
-                colorScheme: "light",
-              }}
-            >
-              <NormalizeCSS />
-              <GlobalStyles />
-              <Component {...pageProps} />
-            </MantineProvider>
-          </SupabaseContextProvider>
-        </JssProvider>
-      </RecoilRoot>
-    </>
+    <RecoilRoot>
+      <JssProvider generateId={createGenerateId()}>
+        <SupabaseContextProvider client={supabase}>
+          <Head>
+            <title>Classroom Companion</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <MantineProvider
+            theme={{
+              /** Put your mantine theme override here */
+              fontFamily: "Reem kufi",
+              colorScheme: "light",
+            }}
+          >
+            <NormalizeCSS />
+            <GlobalStyles />
+            <Component {...pageProps} />
+          </MantineProvider>
+        </SupabaseContextProvider>
+      </JssProvider>
+    </RecoilRoot>
+
   );
 }
