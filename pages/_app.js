@@ -51,5 +51,6 @@ export default function App(props) {
         </SupabaseContextProvider>
       </JssProvider>
     </RecoilRoot>
+
   );
 }

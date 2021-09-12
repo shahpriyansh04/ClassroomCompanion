@@ -16,7 +16,7 @@ function Signup() {
   const { auth, from } = useSupabase();
   const user = auth?.currentUser;
 
-  console.log(auth?.currentUser);
+
   const {
     register,
     handleSubmit,
@@ -33,7 +33,8 @@ function Signup() {
 
   return (
     <div>
-      {false ? (
+
+      {auth.currentUser ? (
         <div className="flex flex-col xl:flex-row h-screen justify-center items-center text-center bg-light-primary  font-serif">
           <Loader
             type="TailSpin"
