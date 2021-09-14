@@ -2,24 +2,38 @@ import React, { useState } from "react";
 import { Drawer, Select } from "@mantine/core";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-
+import { useNotifications } from "@mantine/notifications";
 import { useUser } from "use-supabase";
 import { AiOutlineClose } from "react-icons/ai";
 function CreateClassroomDrawer({ opened, setOpened }) {
   const user = useUser();
+  const notifications = useNotifications();
   const { register, handleSubmit, reset } = useForm();
 
   const [level, setLevel] = useState();
   const onSubmit = async (data) => {
     data.level = level;
-    data.teacher_id = user.id;
-    data.teacher_name = user.user_metadata.full_name;
+    data.teacher_id = user?.id;
+    data.teacher_name = user?.user_metadata.full_name;
     axios
       .post("/api/classroom/create", null, { params: data })
       .then((res) => {
         handleDrawerClose();
+        notifications.showNotification({
+          title: "Classroom Created Successfully",
+          color: "teal",
+          message: "You will be redirected to the classroom in 5",
+        });
       })
-      .catch((error) => console.log(error));
+      .catch(async () => {
+        await notifications.clean();
+        notifications.showNotification({
+          title: "Could not create classroom",
+          color: "red",
+
+          message: "Please try again later",
+        });
+      });
   };
 
   const handleDrawerClose = () => {
