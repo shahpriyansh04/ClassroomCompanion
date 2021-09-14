@@ -4,7 +4,6 @@ import { Menu, MenuItem, UnstyledButton, Divider } from "@mantine/core";
 import { HiDotsVertical, HiLogout, HiUser } from "react-icons/hi";
 import { useUser } from "use-supabase";
 import supabase from "../../utils/supabase";
-
 function DashboardUserButton() {
   const signOut = async () => {
     await supabase.auth.signOut();

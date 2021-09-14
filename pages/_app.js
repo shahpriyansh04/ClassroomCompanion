@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { JssProvider, createGenerateId } from "react-jss";
 import Head from "next/head";
+import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, NormalizeCSS, GlobalStyles } from "@mantine/core";
 import "../global.css";
 import ProgressBar from "@badrap/bar-of-progress";
@@ -44,13 +45,15 @@ export default function App(props) {
               colorScheme: "light",
             }}
           >
-            <NormalizeCSS />
-            <GlobalStyles />
-            <Component {...pageProps} />
+            {" "}
+            <NotificationsProvider>
+              <NormalizeCSS />
+              <GlobalStyles />
+              <Component {...pageProps} />
+            </NotificationsProvider>
           </MantineProvider>
         </SupabaseContextProvider>
       </JssProvider>
     </RecoilRoot>
-
   );
 }
