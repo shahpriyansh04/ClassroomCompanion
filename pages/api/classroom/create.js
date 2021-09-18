@@ -3,12 +3,17 @@ export default async function createClassroomAPI(req, res) {
   if (req.method == "POST") {
     const { data, error } = await supabase.from("classrooms").insert([
       {
-        teacher_id: req.query.teacher_id,
+        user_id: req.query.user_id,
         name: req.query.name,
         teacher_name: req.query.teacher_name,
-        students: {
-          name: "12",
-        },
+        students: [
+          {
+            name: "12",
+          },
+          {
+            name: "13",
+          },
+        ],
         subject: req.query.subject,
         level: req.query.level,
       },

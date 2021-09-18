@@ -12,14 +12,14 @@ function CreateClassroomDrawer({ opened, setOpened }) {
   const [level, setLevel] = useState();
   const onSubmit = async (data) => {
     data.level = level;
-    data.teacher_id = user.id;
-    data.teacher_name = user.user_metadata.full_name;
+    data.user_id = user.id;
+    // data.teacher_name = user.user_metadata.full_name;
     axios
       .post("/api/classroom/create", null, { params: data })
       .then((res) => {
         handleDrawerClose();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 
   const handleDrawerClose = () => {

@@ -17,16 +17,14 @@ const SignInWithGoogle = async () => {
         name: user?.user_metadata?.full_name,
       },
     ]);
-    console.log(data);
-    console.log(error);
+
     // const { data, error } = await supabase.from("users").insert([
     //   {
     //     user_id: "4",
     //     name: "Priyans",
     //   },
     // ]);
-    console.log(data);
-    console.log(error);
+
     return user;
   }
 };
@@ -45,8 +43,7 @@ const SignUpWithEmail = async (userdata) => {
         name: userdata.name,
       },
     ]);
-    console.log(data);
-    console.log(error);
+
     return user;
   }
 };
