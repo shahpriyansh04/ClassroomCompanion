@@ -6,7 +6,6 @@ import { MantineProvider, NormalizeCSS, GlobalStyles } from "@mantine/core";
 import "../global.css";
 import ProgressBar from "@badrap/bar-of-progress";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { RecoilRoot } from "recoil";
 import supabase from "../utils/supabase";
 import { SupabaseContextProvider } from "use-supabase";
 import Router from "next/router";
@@ -31,29 +30,27 @@ export default function App(props) {
   }, []);
 
   return (
-    <RecoilRoot>
-      <JssProvider generateId={createGenerateId()}>
-        <SupabaseContextProvider client={supabase}>
-          <Head>
-            <title>Classroom Companion</title>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
-          <MantineProvider
-            theme={{
-              /** Put your mantine theme override here */
-              fontFamily: "Reem kufi",
-              colorScheme: "light",
-            }}
-          >
-            {" "}
-            <NotificationsProvider>
-              <NormalizeCSS />
-              <GlobalStyles />
-              <Component {...pageProps} />
-            </NotificationsProvider>
-          </MantineProvider>
-        </SupabaseContextProvider>
-      </JssProvider>
-    </RecoilRoot>
+    <JssProvider generateId={createGenerateId()}>
+      <SupabaseContextProvider client={supabase}>
+        <Head>
+          <title>Classroom Companion</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <MantineProvider
+          theme={{
+            /** Put your mantine theme override here */
+            fontFamily: "Reem kufi",
+            colorScheme: "light",
+          }}
+        >
+          {" "}
+          <NotificationsProvider>
+            <NormalizeCSS />
+            <GlobalStyles />
+            <Component {...pageProps} />
+          </NotificationsProvider>
+        </MantineProvider>
+      </SupabaseContextProvider>
+    </JssProvider>
   );
 }

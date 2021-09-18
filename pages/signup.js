@@ -16,7 +16,6 @@ function Signup() {
   const { auth, from } = useSupabase();
   const user = auth?.currentUser;
 
-
   const {
     register,
     handleSubmit,
@@ -24,7 +23,6 @@ function Signup() {
   } = useForm();
   const onSubmit = async (data) => {
     const user = await SignUpWithEmail(data);
-    console.log(user);
   };
 
   if (user) {
@@ -33,7 +31,6 @@ function Signup() {
 
   return (
     <div>
-
       {auth.currentUser ? (
         <div className="flex flex-col xl:flex-row h-screen justify-center items-center text-center bg-light-primary  font-serif">
           <Loader
